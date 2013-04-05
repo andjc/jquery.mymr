@@ -18,11 +18,12 @@
  * A. Cunningham
  * lang.support <AT> gmail <DOT> com
  *
- * 2013-03-31
+ * 2013-04-05
  */
 $(document).ready(function () {
-    // var docLang = $('html').attr('lang');
-    var docLang = "my";
+    if(docLang == null) {
+        var docLang = $('html').attr('lang');
+    } 
     switch (docLang) {
         case "my":
             // Unicode 5.1 to Unicode 5.2
