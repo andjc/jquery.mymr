@@ -37,9 +37,10 @@
  * A. Cunningham
  * lang.support <AT> gmail <DOT> com
  *
- * 2013-04-05
+ * 2013-04-08
  */
 $(document).ready(function () {
+    var docLang = mymrLang;
     if(docLang == null) {
         var docLang = $('html').attr('lang');
     } 
@@ -56,7 +57,7 @@ $(document).ready(function () {
             //Suppress unwanted breakpoints
             $("body").html($("body").html().replace(/([\u0009-\u000d\u0020\u00a0\u2000-\u200a\u2028\u2029\u202f]|>|\u201C|\u2018|\-|\(|\[|{|[\u2012-\u2014]|\u1039)\|([\u1000-\u1021])/g, '$1$2'));
             $("body").html($("body").html().replace(/\|(\u1004\u103A\u1039)/g, '$1'));
-            $("body").html($("body").html().replace(/\u|([က-အ]\u103A)/g, '$1'));
+            $("body").html($("body").html().replace(/\|([က-အ]\u103A)/g, '$1'));
             $("body").html($("body").html().replace(/(\s|\n)\|([က-အဣ-ဧဩဪ])/g, '$1$2'));
             break;
 

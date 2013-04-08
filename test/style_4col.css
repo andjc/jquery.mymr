@@ -1,0 +1,19 @@
+body {margin: 5px 2.0em;}
+
+h1 {
+   text-align: center;
+}
+
+p {text-align: justify; }
+
+div#content {
+   -moz-column-count: 4;
+   -moz-column-gap: 1em;
+   -moz-column-rule: 1px solid black;
+   -webkit-column-count: 4;
+   -webkit-column-gap: 1em;
+   -webkit-column-rule: 1px solid black;
+   column-count: 4;
+   column-gap: 1em;
+   column-rule: 1px solid black;
+}
