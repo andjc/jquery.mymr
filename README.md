@@ -17,7 +17,6 @@ Quick start
 There are two ways of defining the langauge rules to be used:
 
 1. add a lang attribute ot the html element:
-
 ```html
 <html lang="my">
 <head>
@@ -25,9 +24,7 @@ There are two ways of defining the langauge rules to be used:
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
     <script src="/path/to/jquery.mymr.min.js" ></script>
 ```
-
 2. define a variable identifying language:
-
 ```html
 <html>
 <head>
