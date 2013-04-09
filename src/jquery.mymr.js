@@ -17,6 +17,8 @@
  *   - Intha (int)
  *   - Mon (mnw)
  *   - Sgaw Karen (ksw)
+ *   - Shan (shn)
+ *   - Khamti Shan  kht)
  *
  * Todo:
  *  - Western Pwo Karen (pwo)
@@ -24,8 +26,6 @@
  *  - Pa'o Karen (blk)
  *  - Kayah (kyu)
  *  - Asho Chin (csh)
- *  - Shan (shn)
- *  - Khamti Shan  kht)
  *  - Aiton (aio)
  *  - Phake (phk)
  *  - Tai Laing (tle)
@@ -102,12 +102,18 @@ $(document).ready(function () {
             // Shan break points
             $("body").html($("body").html().replace(/([\u1004\u1010\u1011\u1015\u1019-\u101E\u1022\u1075-\u1081\u109E\u109F])/g, '\u200B$1'));
             //Suppress unwanted breakpoints
-            // To be added suppression arounf linebreaks, whitespace, punctuation, etc.
             $("body").html($("body").html().replace(/\u200B([\u1004\u1010\u1011\u1015\u1019-\u101C\u101E\u1022\u1075-\u1079\u107B-\u1081\u109E\u109F]\u103A)/g, '$1'));
             $("body").html($("body").html().replace(/([\u0009-\u000d\u0020\u00a0\u2000-\u200a\u2028\u2029\u202f>\u201C\u2018\-\(\[{\u2012-\u2014])\u200B([\u1004\u1010\u1011\u1015\u1019-\u101E\u1022\u1075-\u1081\u109E\u109F])/g, '$1$2'));
             break;
         
         case "kht":
+            // Unicode 5.1 to Unicode 5.2 
+            $("body").html($("body").html().replace(/(\u103A)(\u1037)/g, '$2$1'));
+            // Khmati Shan break points
+            $("body").html($("body").html().replace(/([\u1000\u1002\u1004\u1010\u1011\u1015\u1019-\u101D\u1022\u1075\u1078\u1079\u107B\u107C\u107F\u1080\uAA60-\uAA6F\uAA71-\uAA76])/g, '\u200B$1'));
+            //Suppress unwanted breakpoints
+            $("body").html($("body").html().replace(/\u200B([\u1000\u1004\u1010\u1015\u1019\u101D\uAA65\uAA6B]\u103A)/g, '$1'));
+            $("body").html($("body").html().replace(/([\u0009-\u000d\u0020\u00a0\u2000-\u200a\u2028\u2029\u202f>\u201C\u2018\-\(\[{\u2012-\u2014])\u200B([\u1000\u1002\u1004\u1010\u1011\u1015\u1019-\u101D\u1022\u1075\u1078\u1079\u107B\u107C\u107F\u1080\uAA60-\uAA6F\uAA71-\uAA76])/g, '$1$2'));
             break;
         
         case "aio":
