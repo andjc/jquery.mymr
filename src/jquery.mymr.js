@@ -103,7 +103,8 @@ $(document).ready(function () {
             $("body").html($("body").html().replace(/([\u1004\u1010\u1011\u1015\u1019-\u101E\u1022\u1075-\u1081\u109E\u109F])/g, '\u200B$1'));
             //Suppress unwanted breakpoints
             // To be added suppression arounf linebreaks, whitespace, punctuation, etc.
-            $("body").html($("body").html().replace(/\u200B([\u1004\u1010\u1011\u1015\u1019-\u101E\u1022\u1075-\u1081]\u103A)/g, '$1'));
+            $("body").html($("body").html().replace(/\u200B([\u1004\u1010\u1011\u1015\u1019-\u101C\u101E\u1022\u1075-\u1079\u107B-\u1081\u109E\u109F]\u103A)/g, '$1'));
+            $("body").html($("body").html().replace(/([\u0009-\u000d\u0020\u00a0\u2000-\u200a\u2028\u2029\u202f>\u201C\u2018\-\(\[{\u2012-\u2014])\u200B([\u1004\u1010\u1011\u1015\u1019-\u101E\u1022\u1075-\u1081\u109E\u109F])/g, '$1$2'));
             break;
         
         case "kht":
