@@ -82,7 +82,7 @@ $(document).ready(function () {
             // Unicode 5.1 to Unicode 5.2 
             $("body").html($("body").html().replace(/(\u103A)(\u1037)/g, '$2$1'));
             // Mon break points
-            $("body").html($("body").html().replace(/([\u1000-\u1003\u1005-\u1007\u1009-\u1021\u1023\u1025\u1028-\u102A\u105A-\u105D])/g, '$1'));
+            $("body").html($("body").html().replace(/([\u1000-\u1003\u1005-\u1007\u1009-\u1021\u1023\u1025\u1028-\u102A\u105A-\u105D])/g, '|$1'));
             //Suppress unwanted breakpoints
             $("body").html($("body").html().replace(/([\u0009-\u000d\u0020\u00a0\u2000-\u200a\u2028\u2029\u202f]|>|\u201C|\u2018|\-|\(|\[|{|[\u2012-\u2014]|\u1039)\|([\u1000-\u1003\u1005-\u1007\u1009-\u1021\u105A-\u105D])/g, '$1$2'));
             $("body").html($("body").html().replace(/\|([\u1000-\u1003\u1005-\u1007\u1009-\u1021\u105A-\u105D]\u103A)/g, '$1'));
