@@ -1,0 +1,3 @@
+h1. CSS rules for Myanmar script 
+
+A series of CSS rules to improve Myanmar script web typography and typesetting.

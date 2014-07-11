@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+/*
+TODO: 
+
+  - add font-language-override settings for Padauk
+  - change @font-face declarations to use Google Font Directory for TharLon and Padauk
+  - look at implementing fontloader.js 
+
+      -moz-font-feature-settings
+           font-feature-settings
+*/
+
+@font-face {
+    font-family: 'Padauk';
+    src: url('/i18n/fonts/Padauk.eot'); 
+    src: url('/i18n/fonts/Padauk.eot?#iefix') format('embedded-opentype'),
+                     url('/i18n/fonts/Padauk.woff') format('woff'), 
+                     url('/i18n/fonts/Padauk.ttf')  format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Padauk';
+    src: url('/i18n/fonts/Padauk-bold.eot'); 
+    src: url('/i18n/fonts/Padauk-bold.eot?#iefix') format('embedded-opentype'),
+                     url('/i18n/fonts/Padauk-bold.woff') format('woff'), 
+                     url('/i18n/fonts/Padauk-bold.ttf')  format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tharlon';
+    src: url('/i18n/fonts/Tharlon-Regular.eot'); 
+    src: url('/i18n/fonts/Tharlon-Regular.eot?#iefix') format('embedded-opentype'),
+                     url('/i18n/fonts/Tharlon-Regular.woff') format('woff'), 
+                     url('/i18n/fonts/Tharlon-Regular.ttf')  format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 
+ * my : Burmese
+ * obr : Old Burmese
+ * rki : Rakhine
+ * tvn : Tavoyan
+ * int : Intha
+ * shn : Shan
+ */
+:lang(my), 
+:lang(obr),
+:lang(rki),
+:lang(tvn),
+:lang(int),
+:lang(shn) {
+    font-family: Tharlon;
+}
+
+/* 
+ * ksw : S'gaw Karen
+ * pwo : Western Pwo Karen
+ * blk : Pa'o Karen
+ */
+:lang(ksw),
+:lang(pwo),
+:lang(blk) {
+    font-family: Padauk;
+    -moz-font-language-override: ksw;
+    font-language-override: ksw;
+}
+
+/*
+ * kyu : Kayah
+ */
+:lang(kyu) {
+    font-family: Padauk;
+}
+
+/* 
+ * mnw : Mon
+ * kjp : Eastern Pwo Karen
+ */
+:lang(mnw),
+:lang(kjp) {
+    font-family: "MON3 Anonata 1";
+}
+
+/*
+ * csh : Asho Chin
+ */
+:lang(csh) {}
+
+/*
+ * kht : Khamti Shan
+ */
+:lang(kht) {
+    font-family: Padauk;
+}
+
+/*
+ * aio : Aiton
+ */
+:lang(aio) {
+    font-family: Padauk;
+}
+
+/*
+ * phk : Phake
+ */
+:lang(phk) {
+    font-family: Padauk;
+}
+
+/*
+ * Add Sanskrit and Pali support
+ */
+:lang(pli-Mymr), :lang(san-Mymr) {}
+
+
