@@ -193,7 +193,6 @@ function convertDigits(system,num) {
         default:
             break;
 }
-    // alert(num.toString().allReplace(map));
     return num.toString().allReplace(map);
 }
 
@@ -219,7 +218,6 @@ function convertConsonants(system,num) {
         default:
             break;
 }
-    // alert(num.toString().allReplace(map));
     return num.toString().allReplace(map);
 }
 
@@ -252,7 +250,6 @@ function convertConsonants(system,num) {
 function mymrLists(reqListTypeUL,reqListTypeOL) {
 	if(reqListTypeUL) {
 		var listTypeUL = jQuery( "ul" ).css( "list-style-type" );
-		alert("Unordered lists: " + listTypeUL);
 		if(listTypeUL !== reqListTypeUL) {
       var listRuleUL = "";
 			if(reqListTypeUL == "dash") {
@@ -267,7 +264,6 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 
 	if(reqListTypeOL) {
 		var listTypeOL = jQuery( "ol" ).css( "list-style-type" );
-		alert("Ordered lists: " + listTypeOL);
 		if(listTypeOL !== reqListTypeOL) {
 
 			var listRuleOL = "ol{list-style-type:none}  ol li{display:block} ol li:before{content: '(' attr(item-value) ') '}";
@@ -349,12 +345,7 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 				    }
 				});
 				});
-			    
-			    
-			    
-			    
-			    
-			    
+
 
 			// } else if(reqListTypeOL == "myanmar" || reqListTypeOL == "-moz-myanmar") {
 			} else if(reqListTypeOL == "myanmar") {
