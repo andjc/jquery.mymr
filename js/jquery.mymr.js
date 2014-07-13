@@ -350,10 +350,10 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 				//	var mymrMap = [];
 				//	mymrGenerateAlphabeticList(mymrMap);
 				//	break;
-				//case 'shan-consonant';
-				//	var mymrMap = [];
-				//	mymrGenerateAlphabeticList(mymrMap);
-				//	break;
+				case 'shan-consonant';
+					var mymrMap = ["ၵ","ၶ","ၷ","င","ၸ","သ","ၺ","ၹ","တ","ထ","ၻ","ၼ","ပ","ၽ","ၾ","ၿ","မ","ယ","ရ","လ","ဝ","ႀ","ႁ","ဢ"];
+					mymrGenerateAlphabeticList(mymrMap);
+					break;
 				//case 'khamti-shan-consonant';
 				//	var mymrMap = [];
 				//	mymrGenerateAlphabeticList(mymrMap);
