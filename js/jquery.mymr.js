@@ -166,7 +166,7 @@ function mymrLineBrk(docLang, content) {
 }
 
 /*
- * Execute whe document is ready
+ * Execute when document is ready
  *
  *
  */
@@ -174,12 +174,12 @@ function mymrLineBrk(docLang, content) {
 
 function convertDigits(system,num) {
 
-    String.prototype.allReplace = function(obj) {
+	String.prototype.allReplace = function(obj) {
         var retStr = this
         for (var x in obj) {
-        retStr = retStr.replace(new RegExp(x, 'g'), obj[x])
-    }
-    return retStr
+        	retStr = retStr.replace(new RegExp(x, 'g'), obj[x])
+    	}
+    	return retStr;
     }
 
     var map = ""
@@ -192,46 +192,81 @@ function convertDigits(system,num) {
             break;
         default:
             break;
-}
+	}
     return num.toString().allReplace(map);
 }
 
 
-function convertConsonants(system,num) {
+function mymrGenerateNumericList(digitSystem) {
+	$("ol>li:not(ol>li>ol>li)").each(function(i){
+		$(this).attr('item-value', convertDigits(digitSystem,i+1));
+	});
 
-    String.prototype.allReplace = function(obj) {
-        var retStr = this
-        for (var x in obj) {
-        retStr = retStr.replace(new RegExp(x, 'g'), obj[x])
-    }
-    return retStr
-    }
+	$("ol ol").each(function(i){
+		$(this).addClass("secondlvl");
+	});
 
-    var map = ""
-    switch (system) {
-        case 'burmese-consonant':
-            map = {0:"က",1:"ခ",2:"ဂ",3:"ဃ",4:"င",5:"စ",6:"ဆ",7:"ဇ",8:"ဈ",9:"ည",10:"ဋ",11:"ဌ",12:"ဍ",13:"ဎ",14:"တ",15:"ထ",16:"ဒ",17:"ဓ",18:"န",19:"ပ",20:"ဖ",21:"ဗ",22:"ဘ",23:"မ",24:"ယ",25:"ရ",26:"လ",27:"ဝ",28:"သ",29:"ဟ",30:"ဠ",31:"အ"};
-            break;     
-        case 'burmese-consonant-double':
-            map = {0:"က",1:"ခ",2:"ဂ",3:"ဃ",4:"င",5:"စ",6:"ဆ",7:"ဇ",8:"ဈ",9:"ည",10:"ဋ",11:"ဌ",12:"ဍ",13:"ဎ",14:"တ",15:"ထ",16:"ဒ",17:"ဓ",18:"န",19:"ပ",20:"ဖ",21:"ဗ",22:"ဘ",23:"မ",24:"ယ",25:"ရ",26:"လ",27:"ဝ",28:"သ",29:"ဟ",30:"ဠ",31:"အ"};
-            break;
-        default:
-            break;
+	$("ol.secondlvl").each(function(i){
+		jQuery("li", this).each(function(i){
+			$(this).attr('item-value', convertDigits(digitSystem,i+1));
+		});
+	});
+
+	$("ol ol ol").each(function(i){
+		$(this).addClass("thirdlvl");
+	});
+
+	$("ol.thirdlvl").each(function(i){
+		jQuery("li", this).each(function(i){
+			$(this).attr('item-value', convertDigits(digitSystem,i+1));
+		});
+	});
 }
-    return num.toString().allReplace(map);
+
+function mymrGenerateAlphabeticList(consonants) {
+	$("ol>li:not(ol>li>ol>li)").each(function(i){
+		if(i <= 31){
+			$(this).attr('item-value', consonants[i]);
+		} else {
+			var quot = Math.floor(i/32) - 1;
+			var rem = i%32;
+			$(this).attr('item-value', consonants[quot] + consonants[rem]);
+		}
+	});
+
+	$("ol>li>ol").each(function(i){
+		$(this).addClass("secondlvl");
+	});
+
+	$("ol.secondlvl").each(function(){
+		$(this).children("li").each(function(j){
+			if(j <= 31){
+				$(this).attr('item-value', consonants[j]);
+			} else {
+				var quot = Math.floor(j/32) - 1;
+				var rem = j%32;
+				$(this).attr('item-value', consonants[quot] + consonants[rem]);
+			}
+		});
+	});
+					
+	$("ol ol ol").each(function(i){
+		$(this).addClass("thirdlvl");
+	});
+
+	$("ol.thirdlvl").each(function(){
+		$(this).children().each(function(k){
+			if(k <= 31){
+				$(this).attr('item-value', consonants[k]);
+			} else {
+				var quot = Math.floor(k/32) - 1;
+				var rem = k%32;
+				$(this).attr('item-value', consonants[quot] + consonants[rem]);
+			}
+		});
+	});
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
  * mymrLists(reqListTypeUL,reqListTypeOL)
@@ -269,161 +304,53 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 			var listRuleOL = "ol{list-style-type:none}  ol li{display:block} ol li:before{content: '(' attr(item-value) ') '}";
 			jQuery('head').append('<style>' + listRuleOL + '</style>');
 
-			// append css hack 
-			
-			/*
-			if(reqListTypeOL == "burmese-consonant") {
-				var alpha = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
-
-				
-				$("ol>li:not(ol>li>ol>li)").each(function(i){
-				    $(this).attr('item-value', alpha[i]);
-				});
-
-				$("ol ol").each(function(i){
-				    $(this).addClass("secondlvl");
-				});
-
-				$("ol.secondlvl").each(function(i){
-				    jQuery("li", this).each(function(i){
-				    	$(this).attr('item-value', alpha[i]);
-				    });
-				});
-
-				$("ol ol ol").each(function(i){
-				    $(this).addClass("thirdlvl");
-				});
-
-				$("ol.thirdlvl").each(function(i){
-				    jQuery("li", this).each(function(i){
-				    	$(this).attr('item-value', alpha[i]);
-				    });
-				}); 
-*/
-
-			if(reqListTypeOL == "burmese-consonant") {
-			    var consonants = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
-			    $("ol>li:not(ol>li>ol>li)").each(function(i){
-				    if(i <= 31){
-					$(this).attr('item-value', consonants[i]);
-				    } else {
-					var quot = Math.floor(i/32) - 1;
-					var rem = i%32;
-					$(this).attr('item-value', consonants[quot] + consonants[rem]);
-				    }
-				});
-
-				$("ol>li>ol").each(function(i){
-				    $(this).addClass("secondlvl");
-				});
-
-				$("ol.secondlvl").each(function(){
-				$(this).children("li").each(function(j){
-				    if(j <= 31){
-					$(this).attr('item-value', consonants[j]);
-				    } else {
-					var quot = Math.floor(j/32) - 1;
-					var rem = j%32;
-					$(this).attr('item-value', consonants[quot] + consonants[rem]);
-				    }
-				});
-				});
-				
-
-				$("ol ol ol").each(function(i){
-				    $(this).addClass("thirdlvl");
-				});
-
-				$("ol.thirdlvl").each(function(){
-				$(this).children().each(function(k){
-				    if(k <= 31){
-					$(this).attr('item-value', consonants[k]);
-				    } else {
-					var quot = Math.floor(k/32) - 1;
-					var rem = k%32;
-					$(this).attr('item-value', consonants[quot] + consonants[rem]);
-				    }
-				});
-				});
-
-
-			// } else if(reqListTypeOL == "myanmar" || reqListTypeOL == "-moz-myanmar") {
-			} else if(reqListTypeOL == "myanmar") {
-
-				$("ol>li:not(ol>li>ol>li)").each(function(i){
-				    $(this).attr('item-value', convertDigits('myanmar',i+1));
-				});
-
-				$("ol ol").each(function(i){
-				    $(this).addClass("secondlvl");
-				});
-
-				$("ol.secondlvl").each(function(i){
-				    jQuery("li", this).each(function(i){
-				    	$(this).attr('item-value', convertDigits('myanmar',i+1));
-				    });
-				});
-
-				$("ol ol ol").each(function(i){
-				    $(this).addClass("thirdlvl");
-				});
-
-				$("ol.thirdlvl").each(function(i){
-				    jQuery("li", this).each(function(i){
-				    	$(this).attr('item-value', convertDigits('myanmar',i+1));
-				    });
-				});
-
-
-			} else if(reqListTypeOL == "shan") {
-
-				$("ol>li:not(ol>li>ol>li)").each(function(i){
-				    $(this).attr('item-value', convertDigits('shan',i+1));
-				});
-
-				$("ol ol").each(function(i){
-				    $(this).addClass("secondlvl");
-				});
-
-				$("ol.secondlvl").each(function(i){
-				    jQuery("li", this).each(function(i){
-				    	$(this).attr('item-value', convertDigits('shan',i+1));
-				    });
-				});
-
-				$("ol ol ol").each(function(i){
-				    $(this).addClass("thirdlvl");
-				});
-
-				$("ol.thirdlvl").each(function(i){
-				    jQuery("li", this).each(function(i){
-				    	$(this).attr('item-value', convertDigits('shan',i+1));
-				    });
-				});
-
-
+			var mymrMap = "";
+			var mymrDigitSystem = "";
+			switch(reqListTypeOL) {
+				case 'burmese-consonant':
+					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
+			    	mymrGenerateAlphabeticList(mymrMap);
+					break;
+				case 'myanmar-parens':
+				case 'myanmar':
+					mymrDigitSystem = "myanmar";
+					mymrGenerateNumericList(mymrDigitSystem);
+					break;
+				case 'shan':
+					mymrDigitSystem = "shan";
+					mymrGenerateNumericList(mymrDigitSystem);
+					break;
+				default:
+					break;
 			}
-
 
 		}
 	} 
 }
 
-jQuery(function () {
 
-  if (mymrLBFlag) {
+/*
+ * Execute when document is ready
+ *
+ *
+ */
 
-    if(mymrLang != null){
-        jQuery("body").html( function(i, oldhtml ) {
-            return mymrLineBrk( mymrLang, oldhtml );
-        });
-    }
-    else{
-        jQuery('*:lang(my)').html( function(i, oldhtml) {
-            return mymrLineBrk( "my", oldhtml );
-        });
-    }
+jQuery(document).ready(function () {
+	if (mymrLBFlag) {
+		if(mymrLang != null){
+        	jQuery("body").html( function(i, oldhtml ) {
+            	return mymrLineBrk( mymrLang, oldhtml );
+        	});
+    	} else {
+        	jQuery('*:lang(my)').html( function(i, oldhtml) {
+            	return mymrLineBrk( "my", oldhtml );
+        	});
+    	}
+	}
 
-  }
-
+	if (!olListType) { var olListType = ""; }
+	if (!ulListType) { var ulListType = ""; }
+	if ( ulListType != "" || olListType != "") { mymrLists(ulListType,olListType); }
+	
 });
+
