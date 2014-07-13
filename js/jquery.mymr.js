@@ -7,9 +7,9 @@
  * A. Cunningham
  * lang.support <AT> gmail <DOT> com
  *
- * Version 0.2
+ * Version 0.3
  *
- * 2014-07-11
+ * 2014-07-13
  */
 
 /*
@@ -22,6 +22,14 @@ if(typeof mymrLBFlag == 'undefined') {
 
 if(typeof mymrLang == 'undefined') {
     var mymrLang = jQuery('html')[0].lang;
+}
+
+if(typeof olListType == 'undefined') {
+	var olListType = "";
+}
+
+if(typeof ulListType == 'undefined') {
+	var ulListType = "";
 }
 
 /*
@@ -348,9 +356,9 @@ jQuery(document).ready(function () {
     	}
 	}
 
-	if (!olListType) { var olListType = ""; }
-	if (!ulListType) { var ulListType = ""; }
-	if ( ulListType != "" || olListType != "") { mymrLists(ulListType,olListType); }
+	if (olListType != "" || ulListType != "" ) { mymrLists(ulListType,olListType); }
+
+	
 	
 });
 

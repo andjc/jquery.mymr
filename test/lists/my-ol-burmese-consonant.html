@@ -5,11 +5,15 @@
     <title>Testing Burmese lists &ndash; consonant hack</title>
     <meta charset="utf-8">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+       var olListType = "burmese-consonant";
+    </script>
     <script type="text/javascript" src="../../js/jquery.mymr.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/mymr.css">
 	 <style>
 		/* :lang(en) {font: 1.0em sans-serif;}
         :lang(my) {font: 1.0em Padauk, Tharlon;} */
+        ol {list-style-type: "burmese-consonant";}
         ol li:before {
             position: relative;
             float: left;
@@ -18,12 +22,6 @@
             text-align: right;
         }
 	 </style>
-    <script type="text/javascript">
-jQuery(document).ready(function () {    
-    mymrLists("","burmese-consonant");
-
-});
-    </script>
 </head>
 <body>
 
