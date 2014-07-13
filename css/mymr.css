@@ -213,7 +213,7 @@ ol.alpha:lang(my) ol.alpha:lang(my) {
  * Mon rules
  */
 
-ol.alpha:lang(mnw), ol.alphad:lang(mnw) {
+ol.alpha:lang(mnw) {
     list-style: mon-consonant;
 }
 
