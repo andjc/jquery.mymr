@@ -367,10 +367,10 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 				//	var mymrMap = ["က","ၵ","င","ၸ","ꩬ","ꧧ","တ","ထ","ꩫ","ပ","ꧤ","ꧨ","မ","ယ","ꩺ","လ","ဝ","ၯ","ဢ"];
 				//	mymrGenerateAlphabeticList(mymrMap);
 				//	break;
-				case 'shwe-palaung-consonant':
-					var mymrMap = ["1000","ခ","ꩾ","ဂ","င","စ","ဆ","ꩿ","ဇ","ဈ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ႎ","ႎှ","သ","ဟ","အ","ျ","ြ","ွ","ှ","္လ"];
-					mymrGenerateAlphabeticList(mymrMap);
-					break;
+				//case 'shwe-palaung-consonant':
+				//	var mymrMap = ["1000","ခ","ꩾ","ဂ","င","စ","ဆ","ꩿ","ဇ","ဈ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ႎ","ႎှ","သ","ဟ","အ","ျ","ြ","ွ","ှ","္လ"];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
 				case 'pale-palaung-consonant':
 					var mymrMap = ["က","ခ","ဂ","င","စ","စှ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ဟ","အ","ဝှ"];
 					mymrGenerateAlphabeticList(mymrMap);
