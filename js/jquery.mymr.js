@@ -315,10 +315,73 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 			var mymrMap = "";
 			var mymrDigitSystem = "";
 			switch(reqListTypeOL) {
+				case 'rakhine-consonant':
+				case 'tavoyan-consonant':
+				case 'intha-consonant':
 				case 'burmese-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
 			    	mymrGenerateAlphabeticList(mymrMap);
 					break;
+				//case 'mon-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'sgaw-karen-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'western-pwo-karen-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'eastern-pwo-karen-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'poa-karen-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'kayah-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'asho-chin-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'shan-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'khamti-shan-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'aiton-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'phake-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'tai-laing-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'shwe-palaung-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'pale-palaung-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
+				//case 'rumai-palaung-consonant';
+				//	var mymrMap = [];
+				//	mymrGenerateAlphabeticList(mymrMap);
+				//	break;
 				case 'myanmar-parens':
 				case 'myanmar':
 					mymrDigitSystem = "myanmar";
