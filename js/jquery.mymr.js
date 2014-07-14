@@ -232,12 +232,14 @@ function mymrGenerateNumericList(digitSystem) {
 }
 
 function mymrGenerateAlphabeticList(consonants) {
+	var ccount = consonants.length - 1
+	var divisor = consonants.length;
 	$("ol>li:not(ol>li>ol>li)").each(function(i){
-		if(i <= 31){
+		if(i <= ccount){
 			$(this).attr('item-value', consonants[i]);
 		} else {
-			var quot = Math.floor(i/32) - 1;
-			var rem = i%32;
+			var quot = Math.floor(i/divisor) - 1;
+			var rem = i%divisor;
 			$(this).attr('item-value', consonants[quot] + consonants[rem]);
 		}
 	});
@@ -248,11 +250,11 @@ function mymrGenerateAlphabeticList(consonants) {
 
 	$("ol.secondlvl").each(function(){
 		$(this).children("li").each(function(j){
-			if(j <= 31){
+			if(j <= ccount){
 				$(this).attr('item-value', consonants[j]);
 			} else {
-				var quot = Math.floor(j/32) - 1;
-				var rem = j%32;
+				var quot = Math.floor(j/divisor) - 1;
+				var rem = j%divisor;
 				$(this).attr('item-value', consonants[quot] + consonants[rem]);
 			}
 		});
@@ -264,11 +266,11 @@ function mymrGenerateAlphabeticList(consonants) {
 
 	$("ol.thirdlvl").each(function(){
 		$(this).children().each(function(k){
-			if(k <= 31){
+			if(k <= ccount){
 				$(this).attr('item-value', consonants[k]);
 			} else {
-				var quot = Math.floor(k/32) - 1;
-				var rem = k%32;
+				var quot = Math.floor(k/divisor) - 1;
+				var rem = k%divisor;
 				$(this).attr('item-value', consonants[quot] + consonants[rem]);
 			}
 		});
@@ -320,7 +322,7 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 				case 'intha-consonant':
 				case 'burmese-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
-			    	mymrGenerateAlphabeticList(mymrMap);
+			    	mymrGenerateAlphabeticList(mymrMap);  // 31 = final position in the mymrMap array; 32 characters mymrMap[0] to mymrMap[31].
 					break;
 				case 'mon-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဃ","ၚ","စ","ဆ","ဇ","ၛ","ဉ","ည","ဋ","ဌ","ဍ","ဎ","ဏ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ","ၜ","ၝ"];
