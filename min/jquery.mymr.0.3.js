@@ -322,78 +322,64 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 				case 'intha-consonant':
 				case 'burmese-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
-			    	mymrGenerateAlphabeticList(mymrMap);  // 31 = final position in the mymrMap array; 32 characters mymrMap[0] to mymrMap[31].
 					break;
 				case 'mon-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဃ","ၚ","စ","ဆ","ဇ","ၛ","ဉ","ည","ဋ","ဌ","ဍ","ဎ","ဏ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ","ၜ","ၝ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'sgaw-karen-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ၡ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","အ","ဧ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'western-pwo-karen-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဎ","င","စ","ဆ","ဇ","ည","ၡ","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ၥ","ဟ","အ","ဧ","ၦ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'eastern-pwo-karen-consonant':
 					var mymrMap = ["က","ခ","င","စ","ဆ","ည","တ","ထ","ဍ","န","ၮ","ပ","ဖ","ၜ","မ","ယ","ရ","လ","ဝ","ဟ","အ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'poa-karen-consonant':
 					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","ဏ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'kayah-consonant':
 					var mymrMap = ["က","ခ","ဃ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","အ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'asho-chin-consonant':
 					var mymrMap = ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","ၡ","လ","ဝ","ဟ","အ","ဧ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'shan-consonant':
 					var mymrMap = ["ၵ","ၶ","ၷ","င","ၸ","သ","ၺ","ၹ","တ","ထ","ၻ","ၼ","ပ","ၽ","ၾ","ၿ","မ","ယ","ရ","လ","ဝ","ႀ","ႁ","ဢ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'khamti-shan-consonant':
 					var mymrMap = ["က","ၵ","ꩱ","ဂ","င","ꩡ","ꩢ","ꩣ","ꩤ","ꩥ","ꩦ","ꩧ","ꩨ","ꩩ","ၼ","တ","ထ","ၻ","ꩪ","ꩫ","ပ","ၸ","ၿ","ၹ","မ","ယ","ရ","လ","ဝ","ꩬ","ꩭ","ꩮ","ဢ","ꩯ","ႀ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'aiton-consonant':
 				case 'phake-consonant':
 					var mymrMap = ["က","ၵ","င","ꩡ","ၺ","တ","ထ","ꩫ","ပ","ၸ","မ","ယ","ꩺ","လ","ဝ","ꩭ","ဢ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				//case 'tai-laing-consonant':
 				//	var mymrMap = ["က","ၵ","င","ၸ","ꩬ","ꧧ","တ","ထ","ꩫ","ပ","ꧤ","ꧨ","မ","ယ","ꩺ","လ","ဝ","ၯ","ဢ"];
-				//	mymrGenerateAlphabeticList(mymrMap);
 				//	break;
 				//case 'shwe-palaung-consonant':
 				//	var mymrMap = ["1000","ခ","ꩾ","ဂ","င","စ","ဆ","ꩿ","ဇ","ဈ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ႎ","ႎှ","သ","ဟ","အ","ျ","ြ","ွ","ှ","္လ"];
-				//	mymrGenerateAlphabeticList(mymrMap);
 				//	break;
 				case 'pale-palaung-consonant':
 					var mymrMap = ["က","ခ","ဂ","င","စ","စှ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ဟ","အ","ဝှ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'rumai-palaung-consonant':
 					var mymrMap = ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ႎ","ဝ","ဟ","အ"];
-					mymrGenerateAlphabeticList(mymrMap);
 					break;
 				case 'myanmar-parens':
 				case 'myanmar':
 					mymrDigitSystem = "myanmar";
-					mymrGenerateNumericList(mymrDigitSystem);
 					break;
 				case 'shan':
 					mymrDigitSystem = "shan";
-					mymrGenerateNumericList(mymrDigitSystem);
 					break;
 				default:
 					break;
 			}
-
+			if(mymrDigitSystem != "") { mymrGenerateNumericList(mymrDigitSystem); }
+			if(mymrMap != "") { mymrGenerateAlphabeticList(mymrMap); }
+			    
+			   
 		}
 	} 
 }

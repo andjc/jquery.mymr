@@ -23,7 +23,7 @@
 body {font: 1.0em/1.6em TharLon; }
 
 h1 {
-font: 1.6em 'Myanmar3 Head',Myanmar3h;
+font: 3.0em 'Myanmar3 Head',Myanmar3h;
 font-weight: normal;
 letter-spacing: -1px;
 -moz-font-feature-settings: "clig","liga";
@@ -40,3 +40,7 @@ ol li:before {
    content: "(" counter(item, myanmar) ") ";
    counter-increment: item;
 }
+
+p#second:first-letter { float: left; color: #903; font-size: 75px; line-height: 60px; padding-top: 4px; padding-right: 8px; padding-left: 3px; font-family:'Myanmar3 Head',Myanmar3h; }
+
+p:first-child {color: darkgreen; font-weight: bold; }
