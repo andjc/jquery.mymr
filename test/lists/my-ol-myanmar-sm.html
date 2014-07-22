@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Testing Burmese lists &ndash; digit hack</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+       var olListType = "myanmar-section";
+       var listAffix = "sm";
+    </script>
+    <script type="text/javascript" src="../../js/jquery.mymr.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/mymr.css">
+	 <style>
+		:lang(en) {font: 1.0em sans-serif;}
+        :lang(my) {font: 1.0em Padauk, Tharlon;}
+        ol {list-style-type: myanmar-section;}
+        ol li:before {
+            position: relative;
+            float: left;
+            left: -1.0em;
+            width: 2em;
+            text-align: right;
+        }
+	 </style>
+</head>
+<body>
+
+<h1>Testing Burmese lists &ndash; digit hack</h1>
+<h2>Language names</h2>
+
+<div lang="my">
+<ol>
+<li><span lang="en">Arabic</span> &ndash; အာရေဗီ    <ol>
+        <li><span lang="en">Modern Standard Arabic</span> &ndash; အရေဗီ(ပုံမှန်) </li>
+    </ol>
+</li>
+<li><span lang="en"><span lang="en">Abkhazian</span> &ndash; အက်ခါဇူအနျ </li>
+<li><span lang="en"><span lang="en">Afrikaans</span> &ndash; အာဖရိကန်းစ် </li>
+<li><span lang="en"><span lang="en">Albanian</span> &ndash; အယ်လ်ဘေးနီးယန်း </li>
+<li><span lang="en"><span lang="en">Amharic</span> &ndash; အန်ဟာရစျချ </li>
+<li><span lang="en">Armenian</span> &ndash; အာမေနီအန် </li>
+<li><span lang="en">Assamese</span> &ndash; အက္စမီစ် </li>
+<li><span lang="en">Azerbaijani</span> &ndash; အော်ဇောဘိုင်ဂျောနီ </li>
+<li><span lang="en">Balinese</span> &ndash; ဘာလီ </li>
+<li><span lang="en">Basaa</span> &ndash; ဘာဆာ </li>
+<li><span lang="en">Basque</span> &ndash; ဘစ်က္ကီ </li>
+<li><span lang="en">Belarusian</span> &ndash; ဘီလာရု </li>
+<li><span lang="en">Bengali</span> &ndash; ဘင်္ဂါလီ </li>
+<li><span lang="en">Bosnian</span> &ndash; ဘော့စ်နီးယား </li>
+<li><span lang="en">Bulgarian</span> &ndash; ဘူဂေးရီးယား </li>
+<li><span lang="en">Burmese</span> &ndash; ဗမာ </li>
+<li><span lang="en">Catalan</span> &ndash; ကာတာလန် </li>
+<li><span lang="en">Chechen</span> &ndash; ချေချင်း </li>
+<li><span lang="en">Cherokee</span> &ndash; ချာရိုကီ </li>
+<li><span lang="en">Chinese</span> &ndash; တရုတ်    <ol>
+        <li><span lang="en">Simplified Chinese</span> &ndash; ရိုးရှင်းသော တရုတ် </li>
+        <li><span lang="en">Traditional Chinese</span> &ndash; ရှေးရိုးစဉ်လာ တရုတ် </li>
+    </ol>
+</li>
+<li><span lang="en">Cree</span> &ndash; ခရီး </li>
+<li><span lang="en">Croatian</span> &ndash; ခရိုအေရှန် </li>
+<li><span lang="en">Czech</span> &ndash; ချက် </li>
+<li><span lang="en">Dakota</span> &ndash; ဒါကိုတာ </li>
+<li><span lang="en">Danish</span> &ndash; ဒိန်းမတ် </li>
+<li><span lang="en">Delaware</span> &ndash; ဒီလာဝဲ </li>
+<li><span lang="en">Dutch</span> &ndash; ဒတ်ချ် </li>
+<li><span lang="en">Dzongkha</span> &ndash; ဒွန်ကာ </li>
+<li><span lang="en">Eastern Frisian</span> &ndash; အရှေ့ပိုင်း ဖရီစီရန် </li>
+<li><span lang="en">English</span> &ndash; အင်္ဂလိပ်    <ol>
+        <li><span lang="en">American English</span> &ndash; အမေရိကန် အင်္ဂလိပ် </li>
+        <li><span lang="en">Australian English</span> &ndash; ဩစတြေးလျှ အင်္ဂလိပ် </li>
+        <li><span lang="en">British English</span> &ndash; ဗြိတိသျှ အင်္ဂလိပ် </li>
+        <li><span lang="en">Canadian English</span> &ndash; ကနေဒါ အင်္ဂလိပ် </li>
+        <li><span lang="en">U.K. English</span> &ndash; အင်္ဂလိပ်(ယူကေ) </li>
+        <li><span lang="en">U.S. English</span> &ndash; အင်္ဂလိပ်(ယူအက်စ်) </li>
+    </ol>
+</li>
+<li><span lang="en">Esperanto</span> &ndash; အက္စပရန္တို </li>
+<li><span lang="en">Estonian</span> &ndash; အက်စ်တိုးနီးရန်း </li>
+<li><span lang="en">Faroese</span> &ndash; ဖာရိုအိစ် </li>
+<li><span lang="en">Fijian</span> &ndash; ဖီဂျီ </li>
+<li><span lang="en">Filipino</span> &ndash; ဖိလစ်ပီနို </li>
+<li><span lang="en">Finnish</span> &ndash; ဖင်နစ်ရှ် </li>
+<li><span lang="en">Flemish</span> &ndash; ဖလီမစ်ရှ် </li>
+<li><span lang="en">French</span> &ndash; ပြင်သစ်    <ol>
+        <li><span lang="en">Canadian French</span> &ndash; ကနေဒါ ပြင်သစ် </li>
+        <li><span lang="en">Swiss French</span> &ndash; ဆွစ် ပြင်သစ် </li>
+    </ol>
+</li>
+<li><span lang="en">Galician</span> &ndash; ဂါလာစီယံ </li>
+<li><span lang="en">Georgian</span> &ndash; ဂျော်ဂျီယန် </li>
+<li><span lang="en">German</span> &ndash; ဂျာမန်    <ol>
+        <li><span lang="en">Swiss German</span> &ndash; ဆွစ် ဂျာမန် </li>
+        <li><span lang="en">Austrian German</span> &ndash; ဩစတြီးယ ဂျာမန် </li>
+    </ol>
+</li>
+<li><span lang="en">Guarani</span> &ndash; ဂူအာရာနီ </li>
+<li><span lang="en">Gujarati</span> &ndash; ဂူဂျာရသီ </li>
+<li><span lang="en">Haitian</span> &ndash; ဟာအီတီအန် </li>
+<li><span lang="en">Hausa</span> &ndash; ဟာဥစာ </li>
+<li><span lang="en">Hawaiian</span> &ndash; ဟာဝေယံ </li>
+<li><span lang="en">Hebrew</span> &ndash; ဟီးဘရူး </li>
+<li><span lang="en">Hindi</span> &ndash; ဟိန္ဒီ </li>
+<li><span lang="en">Hungarian</span> &ndash; ဟန်ဂေရီ </li>
+<li><span lang="en">Icelandic</span> &ndash; အိုင်စ်လန္ဒီ </li>
+<li><span lang="en">Igbo</span> &ndash; အစ္ဂဘို </li>
+<li><span lang="en">Indonesian</span> &ndash; အင်ဒိုနီးရှား </li>
+<li><span lang="en">Irish</span> &ndash; အိုင်းရစ် </li>
+<li><span lang="en">Italian</span> &ndash; အီတလီ </li>
+<li><span lang="en">Japanese</span> &ndash; ဂျပန် </li>
+<li><span lang="en">Javanese</span> &ndash; ဂျာဗားနီးစ် </li>
+<li><span lang="en">Kachin</span> &ndash; ကချင် </li>
+<li><span lang="en">Kannada</span> &ndash; ကန္နာဒါ </li>
+<li><span lang="en">Kashmiri</span> &ndash; ကက်ရှ်မီရီ </li>
+<li><span lang="en">Kazakh</span> &ndash; ခါဇါခ် </li>
+<li><span lang="en">Khasi</span> &ndash; ခါစီ </li>
+<li><span lang="en">Kongo</span> &ndash; ကွန်ဂို </li>
+<li><span lang="en">Korean</span> &ndash; ကိုးရီးယား </li>
+<li><span lang="en">Kurdish</span> &ndash; ကဒ် </li>
+<li><span lang="en">Kyrgyz</span> &ndash; ခရူဂစ် </li>
+<li><span lang="en">Lao</span> &ndash; လာအို </li>
+<li><span lang="en">Latin</span> &ndash; လက်တင် </li>
+<li><span lang="en">Latvian</span> &ndash; လက္ဘီအံ </li>
+<li><span lang="en">Lithuanian</span> &ndash; လစ္သူအာနီယံ </li>
+<li><span lang="en">Luxembourgish</span> &ndash; လူဇင်ဘတ်က် </li>
+<li><span lang="en">Macedonian</span> &ndash; မာစီဒိုနီယံ </li>
+<li><span lang="en">Malagasy</span> &ndash; အာလာဂါစီ </li>
+<li><span lang="en">Malay</span> &ndash; မလေး </li>
+<li><span lang="en">Malayalam</span> &ndash; မလေးရာလမ် </li>
+<li><span lang="en">Maltese</span> &ndash; မောလ္တီစ် </li>
+<li><span lang="en">Manchu</span> &ndash; မန်ချူး </li>
+<li><span lang="en">Manipuri</span> &ndash; မနိပူရီ </li>
+<li><span lang="en">Maori</span> &ndash; မောင်းရီ </li>
+<li><span lang="en">Marathi</span> &ndash; မာရသီ </li>
+<li><span lang="en">Mongolian</span> &ndash; မွန်ဂိုလီးယန်း </li>
+<li><span lang="en">Nepali</span> &ndash; နီပါလီ </li>
+<li><span lang="en">Northern Frisian</span> &ndash; မြောက်ပိုင်း ဖရီစီရန် </li>
+<li><span lang="en">Norwegian</span> &ndash; နော်ဝေး    <ol>
+        <li><span lang="en">Norwegian Bokmål</span> &ndash; ဘွတ်မော်လ် </li>
+        <li><span lang="en">Norwegian Nynorsk</span> &ndash; နော်ဝေး နီးနော်စ်ခ် </li>
+    </ol>    
+</li>
+<li><span lang="en">Oriya</span> &ndash; အိုရီရာ </li>
+<li><span lang="en">Pali</span> &ndash; ပါဠိ </li>
+<li><span lang="en">Pashto</span> &ndash; ပါရှ်တို </li>
+<li><span lang="en">Persian</span> &ndash; ပါရှန် </li>
+<li><span lang="en">Polish</span> &ndash; ပိုလန် </li>
+<li><span lang="en">Portuguese</span> &ndash; ပေါ်တူဂီ    <ol>
+        <li><span lang="en">Brazilian Portuguese</span> &ndash; ဘရာဇီး ပေါ်တူဂီ </li>
+    </ol>
+</li>
+<li><span lang="en">Punjabi</span> &ndash; ပန်ချာပီ </li>
+<li><span lang="en">Quechua</span> &ndash; ခက်ချ်ဝါ </li>
+<li><span lang="en">Romanian</span> &ndash; ရိုမေနီယား </li>
+<li><span lang="en">Romansh</span> &ndash; ရောမ </li>
+<li><span lang="en">Russian</span> &ndash; ရုရှ </li>
+<li><span lang="en">Sanskrit</span> &ndash; သင်္သကရိုက် </li>
+<li><span lang="en">Scots</span> &ndash; စကော့ </li>
+<li><span lang="en">Serbian</span> &ndash; ဆားဗီးယန်း </li>
+<li><span lang="en">Shan</span> &ndash; ရှမ်း </li>
+<li><span lang="en">Sichuan Yi</span> &ndash; စီချွမ် ရီ </li>
+<li><span lang="en">Sindhi</span> &ndash; စင်ဒီ </li>
+<li><span lang="en">Sinhala</span> &ndash; ဆင်ဟာလ </li>
+<li><span lang="en">Slovak</span> &ndash; စလိုဗက် </li>
+<li><span lang="en">Slovenian</span> &ndash; စလိုဗေးနီးယမ်း </li>
+<li><span lang="en">Somali</span> &ndash; ဆိုမာလီ </li>
+<li><span lang="en">Southern Sami</span> &ndash; တောင်ပိုင်း ဆာမိ </li>
+<li><span lang="en">Spanish</span> &ndash; စပိန်    <ol>
+        <li><span lang="en">European Spanish</span> &ndash; စပိန်(ဥရောပ) </li>
+        <li><span lang="en">Latin American Spanish</span> &ndash; လက်တင်အမေရိက စပိန် </li>
+    </ol>
+</li>
+<li><span lang="en">Standard Moroccan Tamazight</span> &ndash; မိုရိုကန် တွမ်မဇိုတ် စံ </li>
+<li><span lang="en">Sundanese</span> &ndash; ဆူဒန် </li>
+<li><span lang="en">Swahili</span> &ndash; ဆြာဟီလီ </li>
+<li><span lang="en">Swedish</span> &ndash; ဆွီဒင် </li>
+<li><span lang="en">Tajik</span> &ndash; တာဂွီခ် </li>
+<li><span lang="en">Tamil</span> &ndash; တမီးလ် </li>
+<li><span lang="en">Tatar</span> &ndash; တတာ </li>
+<li><span lang="en">Telugu</span> &ndash; တီလီဂု </li>
+<li><span lang="en">Thai</span> &ndash; ထိုင်း </li>
+<li><span lang="en">Tibetan</span> &ndash; တိဘက် </li>
+<li><span lang="en">Tigrinya</span> &ndash; တီဂ်ရင်ရာ </li>
+<li><span lang="en">Tongan</span> &ndash; တွန်ဂါ </li>
+<li><span lang="en">Turkish</span> &ndash; တာကစ် </li>
+<li><span lang="en">Turkmen</span> &ndash; တခ္မင် </li>
+<li><span lang="en">Ukrainian</span> &ndash; ယူကရိန်း </li>
+<li><span lang="en">Urdu</span> &ndash; အော်ဒူ </li>
+<li><span lang="en">Uyghur</span> &ndash; ဝီဂါ </li>
+<li><span lang="en">Uzbek</span> &ndash; ဦးဇ်ဘက် </li>
+<li><span lang="en">Vietnamese</span> &ndash; ဗီယက်နမ် </li>
+<li><span lang="en">Welsh</span> &ndash; ဝေလ </li>
+<li><span lang="en">Western Frisian</span> &ndash; အနောက်ပိုင်း ဖရီစီရန် </li>
+<li><span lang="en">Wolof</span> &ndash; ဝူလိုဖ် </li>
+<li><span lang="en">Xhosa</span> &ndash; ဇိုစာ </li>
+<li><span lang="en">Yoruba</span> &ndash; ရိုရုဘာ </li>
+<li><span lang="en">Zulu</span> &ndash; ဇူလူ </li>   
+</ol>
+</div>
+</body>
+</html>
