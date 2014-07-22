@@ -25,6 +25,12 @@
     suffix: ") ";
 } 
 
+@counter-style myanmar-section {
+    system: extends myanmar;
+    prefix: "";
+    suffix: "။ ";
+} 
+
 @counter-style shan {
 	system: numeric;
 	symbols: '\1090''\1091''\1092''\1093''\1094''\1045''\1096''\1097''\1098''\1099';
@@ -206,7 +212,11 @@ ul {
 }
 
 ol {
-    list-style: myanmar;
+    list-style: myanmar-parens;
+}
+
+ol:lang(shn) {
+	list-style: shan-parens;
 }
 
 /*
@@ -229,3 +239,10 @@ ol.alpha:lang(mnw) {
     list-style: mon-consonant;
 }
 
+/*
+ * Shan rules
+ */
+
+ ol.alpha:lang(shn) {
+ 	list-style: shan-consonant;
+ }
