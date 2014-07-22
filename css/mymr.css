@@ -31,12 +31,6 @@
     suffix: "။ ";
 }
 
-@counter-style myanmar-section {
-    system: extends myanmar;
-    prefix: "";
-    suffix: "။ ";
-} 
-
 @counter-style shan {
 	system: numeric;
 	symbols: '\1090''\1091''\1092''\1093''\1094''\1045''\1096''\1097''\1098''\1099';
