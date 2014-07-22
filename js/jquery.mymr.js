@@ -204,36 +204,54 @@ function convertDigits(system,num) {
     return num.toString().allReplace(map);
 }
 
-
 function mymrGenerateNumericList(digitSystem) {
-	$("ol>li:not(ol>li>ol>li)").each(function(i){
-		$(this).attr('item-value', convertDigits(digitSystem,i+1));
-	});
 
-	$("ol ol").each(function(i){
-		$(this).addClass("secondlvl");
-	});
+    function mymrNumericItems(olist,listsel) {
+	var fudgeFactor = 1;
+	if(olist.attr("start")) {
+	    var fudgetIt = olist.attr("start");
+	    fudgeFactor = parseInt(fudgetIt);
+	}
 
-	$("ol.secondlvl").each(function(i){
-		jQuery("li", this).each(function(i){
-			$(this).attr('item-value', convertDigits(digitSystem,i+1));
-		});
-	});
+	if(olist.attr("reversed") !== undefined) {
+	    $($(listsel).get().reverse()).each(function(i){
+		$(this).attr('item-value', convertDigits(digitSystem,i+fudgeFactor));
+	    });
+	} else {
+	    $(listsel).each(function(i){
+		$(this).attr('item-value', convertDigits(digitSystem,i+fudgeFactor));
+	    });
+	}
+    }
 
-	$("ol ol ol").each(function(i){
-		$(this).addClass("thirdlvl");
-	});
+    $("ol:not(ol>li>ol)").each(function(){
+	var selector = "li:not(ol>li>ol>li)";
+	mymrNumericItems($(this),selector);
+    });
+    
+    $("ol ol").each(function(){
+	    $(this).addClass("secondlvl");
+    });
 
-	$("ol.thirdlvl").each(function(i){
-		jQuery("li", this).each(function(i){
-			$(this).attr('item-value', convertDigits(digitSystem,i+1));
-		});
-	});
+    jQuery("ol.secondlvl").each(function(){
+	var selector = $(this).find("li");
+	mymrNumericItems($(this),selector);
+    });
+
+    $("ol ol ol").each(function(){
+	    $(this).addClass("thirdlvl");
+    });
+
+    $("ol.thirdlvl").each(function(){
+	var selector = $(this).find("li");
+	mymrNumericItems($(this),selector);
+    });
 }
 
 function mymrGenerateAlphabeticList(consonants) {
 	var ccount = consonants.length - 1
 	var divisor = consonants.length;
+	
 	$("ol>li:not(ol>li>ol>li)").each(function(i){
 		if(i <= ccount){
 			$(this).attr('item-value', consonants[i]);
@@ -293,95 +311,92 @@ function mymrGenerateAlphabeticList(consonants) {
  */
 
 function mymrLists(reqListTypeUL,reqListTypeOL) {
-	if(reqListTypeUL) {
-		var listTypeUL = jQuery( "ul" ).css( "list-style-type" );
-		if(listTypeUL !== reqListTypeUL) {
-      var listRuleUL = "";
-			if(reqListTypeUL == "dash") {
-				listRuleUL = 'ul{list-style-type:none} ul li {display:block} ul li:before {content:"– "}';
-				jQuery('head').append('<style>' + listRuleUL + '</style>');
-			} else if(reqListTypeUL == "hyphen") {
-				listRuleUL = "ul{list-style-type:none}ul li{display:block}ul li:before{content:"- "}";
-				jQuery('head').append('<style>' + listRuleUL + '</style>');
-			}
-		}
-	}  
+    if(reqListTypeUL) {
+	var listTypeUL = jQuery( "ul" ).css( "list-style-type" );
+	if(listTypeUL !== reqListTypeUL) {
+	    var listRuleUL = "";
+	    if(reqListTypeUL == "dash") {
+		listRuleUL = 'ul{list-style-type:none} ul li {display:block} ul li:before {content:"– "}';
+		jQuery('head').append('<style>' + listRuleUL + '</style>');
+	    } else if(reqListTypeUL == "hyphen") {
+		listRuleUL = "ul{list-style-type:none}ul li{display:block}ul li:before{content:"- "}";
+		jQuery('head').append('<style>' + listRuleUL + '</style>');
+	    }
+	}
+    }  
 
-	if(reqListTypeOL) {
-		var listTypeOL = jQuery( "ol" ).css( "list-style-type" );
-		if(listTypeOL !== reqListTypeOL) {
-
-			var listRuleOL = "ol{list-style-type:none}  ol li{display:block} ol li:before{content: '(' attr(item-value) ') '}";
-			jQuery('head').append('<style>' + listRuleOL + '</style>');
-
-			var mymrMap = "";
-			var mymrDigitSystem = "";
-			switch(reqListTypeOL) {
-				case 'rakhine-consonant':
-				case 'tavoyan-consonant':
-				case 'intha-consonant':
-				case 'burmese-consonant':
-					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
-					break;
-				case 'mon-consonant':
-					var mymrMap = ["က","ခ","ဂ","ဃ","ၚ","စ","ဆ","ဇ","ၛ","ဉ","ည","ဋ","ဌ","ဍ","ဎ","ဏ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ","ၜ","ၝ"];
-					break;
-				case 'sgaw-karen-consonant':
-					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ၡ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","အ","ဧ"];
-					break;
-				case 'western-pwo-karen-consonant':
-					var mymrMap = ["က","ခ","ဂ","ဎ","င","စ","ဆ","ဇ","ည","ၡ","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ၥ","ဟ","အ","ဧ","ၦ"];
-					break;
-				case 'eastern-pwo-karen-consonant':
-					var mymrMap = ["က","ခ","င","စ","ဆ","ည","တ","ထ","ဍ","န","ၮ","ပ","ဖ","ၜ","မ","ယ","ရ","လ","ဝ","ဟ","အ"];
-					break;
-				case 'poa-karen-consonant':
-					var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","ဏ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
-					break;
-				case 'kayah-consonant':
-					var mymrMap = ["က","ခ","ဃ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","အ"];
-					break;
-				case 'asho-chin-consonant':
-					var mymrMap = ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","ၡ","လ","ဝ","ဟ","အ","ဧ"];
-					break;
-				case 'shan-consonant':
-					var mymrMap = ["ၵ","ၶ","ၷ","င","ၸ","သ","ၺ","ၹ","တ","ထ","ၻ","ၼ","ပ","ၽ","ၾ","ၿ","မ","ယ","ရ","လ","ဝ","ႀ","ႁ","ဢ"];
-					break;
-				case 'khamti-shan-consonant':
-					var mymrMap = ["က","ၵ","ꩱ","ဂ","င","ꩡ","ꩢ","ꩣ","ꩤ","ꩥ","ꩦ","ꩧ","ꩨ","ꩩ","ၼ","တ","ထ","ၻ","ꩪ","ꩫ","ပ","ၸ","ၿ","ၹ","မ","ယ","ရ","လ","ဝ","ꩬ","ꩭ","ꩮ","ဢ","ꩯ","ႀ"];
-					break;
-				case 'aiton-consonant':
-				case 'phake-consonant':
-					var mymrMap = ["က","ၵ","င","ꩡ","ၺ","တ","ထ","ꩫ","ပ","ၸ","မ","ယ","ꩺ","လ","ဝ","ꩭ","ဢ"];
-					break;
-				//case 'tai-laing-consonant':
-				//	var mymrMap = ["က","ၵ","င","ၸ","ꩬ","ꧧ","တ","ထ","ꩫ","ပ","ꧤ","ꧨ","မ","ယ","ꩺ","လ","ဝ","ၯ","ဢ"];
-				//	break;
-				//case 'shwe-palaung-consonant':
-				//	var mymrMap = ["1000","ခ","ꩾ","ဂ","င","စ","ဆ","ꩿ","ဇ","ဈ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ႎ","ႎှ","သ","ဟ","အ","ျ","ြ","ွ","ှ","္လ"];
-				//	break;
-				case 'pale-palaung-consonant':
-					var mymrMap = ["က","ခ","ဂ","င","စ","စှ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ဟ","အ","ဝှ"];
-					break;
-				case 'rumai-palaung-consonant':
-					var mymrMap = ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ႎ","ဝ","ဟ","အ"];
-					break;
-				case 'myanmar-parens':
-				case 'myanmar':
-					mymrDigitSystem = "myanmar";
-					break;
-				case 'shan':
-					mymrDigitSystem = "shan";
-					break;
-				default:
-					break;
-			}
-			if(mymrDigitSystem != "") { mymrGenerateNumericList(mymrDigitSystem); }
-			if(mymrMap != "") { mymrGenerateAlphabeticList(mymrMap); }
-			    
-			   
-		}
-	} 
+    if(reqListTypeOL) {
+	var listTypeOL = jQuery( "ol" ).css( "list-style-type" );
+	if(listTypeOL !== reqListTypeOL) {
+	    var listRuleOL = "ol{list-style-type:none}  ol li{display:block} ol li:before{content: '(' attr(item-value) ') '}";
+	    jQuery('head').append('<style>' + listRuleOL + '</style>');
+	    var mymrMap = "";
+	    var mymrDigitSystem = "";
+	    switch(reqListTypeOL) {
+		case 'rakhine-consonant':
+		case 'tavoyan-consonant':
+		case 'intha-consonant':
+		case 'burmese-consonant':
+		    var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
+		    break;
+		case 'mon-consonant':
+		    var mymrMap = ["က","ခ","ဂ","ဃ","ၚ","စ","ဆ","ဇ","ၛ","ဉ","ည","ဋ","ဌ","ဍ","ဎ","ဏ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ","ၜ","ၝ"];
+		    break;
+		case 'sgaw-karen-consonant':
+		    var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ၡ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","အ","ဧ"];
+		    break;
+		case 'western-pwo-karen-consonant':
+		    var mymrMap = ["က","ခ","ဂ","ဎ","င","စ","ဆ","ဇ","ည","ၡ","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ၥ","ဟ","အ","ဧ","ၦ"];
+		    break;
+		case 'eastern-pwo-karen-consonant':
+		    var mymrMap = ["က","ခ","င","စ","ဆ","ည","တ","ထ","ဍ","န","ၮ","ပ","ဖ","ၜ","မ","ယ","ရ","လ","ဝ","ဟ","အ"];
+		    break;
+		case 'poa-karen-consonant':
+		    var mymrMap = ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","ဏ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"];
+		    break;
+		case 'kayah-consonant':
+		    var mymrMap = ["က","ခ","ဃ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","အ"];
+		    break;
+		case 'asho-chin-consonant':
+		    var mymrMap = ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","ၡ","လ","ဝ","ဟ","အ","ဧ"];
+		    break;
+		case 'shan-consonant':
+		    var mymrMap = ["ၵ","ၶ","ၷ","င","ၸ","သ","ၺ","ၹ","တ","ထ","ၻ","ၼ","ပ","ၽ","ၾ","ၿ","မ","ယ","ရ","လ","ဝ","ႀ","ႁ","ဢ"];
+		    break;
+		case 'khamti-shan-consonant':
+		    var mymrMap = ["က","ၵ","ꩱ","ဂ","င","ꩡ","ꩢ","ꩣ","ꩤ","ꩥ","ꩦ","ꩧ","ꩨ","ꩩ","ၼ","တ","ထ","ၻ","ꩪ","ꩫ","ပ","ၸ","ၿ","ၹ","မ","ယ","ရ","လ","ဝ","ꩬ","ꩭ","ꩮ","ဢ","ꩯ","ႀ"];
+		    break;
+		case 'aiton-consonant':
+		case 'phake-consonant':
+		    var mymrMap = ["က","ၵ","င","ꩡ","ၺ","တ","ထ","ꩫ","ပ","ၸ","မ","ယ","ꩺ","လ","ဝ","ꩭ","ဢ"];
+		    break;
+		//case 'tai-laing-consonant':
+		//	var mymrMap = ["က","ၵ","င","ၸ","ꩬ","ꧧ","တ","ထ","ꩫ","ပ","ꧤ","ꧨ","မ","ယ","ꩺ","လ","ဝ","ၯ","ဢ"];
+		//	break;
+		//case 'shwe-palaung-consonant':
+		//	var mymrMap = ["1000","ခ","ꩾ","ဂ","င","စ","ဆ","ꩿ","ဇ","ဈ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ႎ","ႎှ","သ","ဟ","အ","ျ","ြ","ွ","ှ","္လ"];
+		//	break;
+		case 'pale-palaung-consonant':
+		    var mymrMap = ["က","ခ","ဂ","င","စ","စှ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ဟ","အ","ဝှ"];
+		    break;
+		case 'rumai-palaung-consonant':
+		    var mymrMap = ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ႎ","ဝ","ဟ","အ"];
+		    break;
+		case 'myanmar-parens':
+		case 'myanmar':
+		    mymrDigitSystem = "myanmar";
+		    break;
+		case 'shan':
+		    mymrDigitSystem = "shan";
+		    break;
+		default:
+		    break;
+	    }
+	    if(mymrDigitSystem != "") { mymrGenerateNumericList(mymrDigitSystem); }
+	    if(mymrMap != "") { mymrGenerateAlphabeticList(mymrMap); } 
+	}
+    }
+    
 }
 
 
@@ -393,15 +408,15 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 
 jQuery(document).ready(function () {
 	if (mymrLBFlag) {
-		if(mymrLang != null){
-        	jQuery("body").html( function(i, oldhtml ) {
-            	return mymrLineBrk( mymrLang, oldhtml );
-        	});
-    	} else {
-        	jQuery('*:lang(my)').html( function(i, oldhtml) {
-            	return mymrLineBrk( "my", oldhtml );
-        	});
-    	}
+	    if(mymrLang != null){
+		jQuery("body").html( function(i, oldhtml ) {
+		    return mymrLineBrk( mymrLang, oldhtml );
+		});
+	    } else {
+		jQuery('*:lang(my)').html( function(i, oldhtml) {
+		    return mymrLineBrk( "my", oldhtml );
+		});
+	    }
 	}
 
 	if (olListType != "" || ulListType != "" ) { mymrLists(ulListType,olListType); }

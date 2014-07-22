@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Mon - numeric ordered list</title>
+    <meta charset="utf-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
+    <script type="text/javascript" src="../../min/jquery.mymr.0.3.min.js"></script>
+    <script type="text/javascript">
+        var ulListType = "dash";
+    </script>
+    <style>
+        body {font-family: MON3 Annota1,Tharlon;}
+        @counter-style dash {
+            system: cyclic;
+            symbols: \2013;
+            /* – */
+            suffix: " ";
+        }
+        ul{list-style-type: dash;}
+        ul li:before {
+            position: relative;
+            float: left;
+            left: -1.0em;
+            width: 2em;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<ul>
+
+    <li>လ်​စံ​ကျ</li>
+    <li>ဂွု</li>
+    <li> ဍို​ပျ​ဍူ</li>
+    <li>ချဳု</li>
+    <li>ဍီု</li>
+    <li> ဍဲာ</li>
+    <li> ဗ္ကေတ်</li>
+    <li> ဍာ် မိတ်</li>
+</ul>
+
+</body>
+</html>

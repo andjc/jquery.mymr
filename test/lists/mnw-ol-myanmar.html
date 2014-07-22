@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Mon - numeric ordered list</title>
+    <meta charset="utf-8">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
+    <script type="text/javascript" src="../../min/jquery.mymr.0.3.min.js"></script>
+    <script type="text/javascript">
+        var olListType = "myanmar";
+    </script>
+    <style>
+        body {font-family: MON3 Annota1,Tharlon;}
+        @counter-style myanmar {
+            system: numeric;
+            symbols: '\1040''\1041''\1042''\1043''\1044''\1045''\1046''\1047''\1048''\1049';
+            /* symbols: ၀ ၁၂ ၃ ၄ ၅ ၆ ၇ ၈ ၉; */
+            prefix: "";
+            suffix: " ";
+        } 
+        ol{list-style-type: myanmar;}
+        ol li:before {
+            position: relative;
+            float: left;
+            left: -1.0em;
+            width: 2em;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<ol>
+
+    <li>လ်​စံ​ကျ</li>
+    <li>ဂွု</li>
+    <li> ဍို​ပျ​ဍူ</li>
+    <li>ချဳု</li>
+    <li>ဍီု</li>
+    <li> ဍဲာ</li>
+    <li> ဗ္ကေတ်</li>
+    <li> ဍာ် မိတ်</li>
+</ol>
+
+</body>
+</html>

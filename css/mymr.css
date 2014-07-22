@@ -29,9 +29,15 @@
 	system: numeric;
 	symbols: '\1090''\1091''\1092''\1093''\1094''\1045''\1096''\1097''\1098''\1099';
         /* symbols: ႐ ႑ ႒ ႓ ႔ ၅ ႖ ႗ ႘ ႙; */
-	prefix: "(";
-	suffix: ") ";
+	prefix: "";
+	suffix: " ";
 }
+
+@counter-style shan-parens {
+    system: extends shan;
+    prefix: "(";
+    suffix: ") ";
+} 
 
 /*
  * Alphabetic list types

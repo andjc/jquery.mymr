@@ -28,7 +28,14 @@ font-weight: normal;
 letter-spacing: -1px;
 -moz-font-feature-settings: "clig","liga";
 font-feature-settings: "clig","liga";
+
+	text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+	color: #9c8468;
+	opacity: 0.3;
+
 }
+
+
 
 h2 {font-size: 1.4em; font-weight: bold;}
 
@@ -41,6 +48,14 @@ ol li:before {
    counter-increment: item;
 }
 
-p#second:first-letter { float: left; color: #903; font-size: 75px; line-height: 60px; padding-top: 4px; padding-right: 8px; padding-left: 3px; font-family:'Myanmar3 Head',Myanmar3h; }
+/* p#second:first-letter { float: left; color: #903; font-size: 75px; line-height: 60px; padding-top: 4px; padding-right: 8px; padding-left: 3px; font-family:'Myanmar3 Head',Myanmar3h; } */
 
-p:first-child {color: darkgreen; font-weight: bold; }
+p#second:first-letter { 
+font-size: 160px; float: left; margin: 20px 20px 0 0; line-height: 0.8;;
+	text-shadow: 4px 4px 0 #566074, 7px 7px 0 #fff;
+        font-family:'Myanmar3 Head',Myanmar3h; }
+
+
+/* p:first-of-type {color: darkgreen; font-weight: bold; } */
+body>p:first-of-type:first-line {color: darkgreen; font-weight: bold; }
+body>p:first-child:first-letter {color: silver;}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <meta charset="utf-8">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/globalize/1.0.0-alpha.3/globalize.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/globalize/1.0.0-alpha.3/globalize/date.min.js"></script>
+</head>
+
+<body>
+<h1 id=date></h1>
+
+<script>
+    $( document ).ready(function() {
+        today = new Date();
+        $('#date').html(Globalize.format(today,'D','de'));
+        console.log(Globalize.format(today,'D','de'));
+    });
+</script>
+
+</body>
+</html>
