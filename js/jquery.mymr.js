@@ -32,6 +32,10 @@ if(typeof ulListType == 'undefined') {
 	var ulListType = "";
 }
 
+if(typeof listAffix == 'undefined') {
+	var listAffix = "parens";
+}
+
 /*
 if (!x) {
     do something
@@ -310,7 +314,7 @@ function mymrGenerateAlphabeticList(consonants) {
  *
  */
 
-function mymrLists(reqListTypeUL,reqListTypeOL) {
+function mymrLists(reqListTypeUL,reqListTypeOL,affix) {
     if(reqListTypeUL) {
 	var listTypeUL = jQuery( "ul" ).css( "list-style-type" );
 	if(listTypeUL !== reqListTypeUL) {
@@ -327,8 +331,24 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 
     if(reqListTypeOL) {
 	var listTypeOL = jQuery( "ol" ).css( "list-style-type" );
+	var listPreffix = "";
+	var listSuffix = "";
+	
+	switch(affix) {
+	    case 'sm':
+		listPreffix = "";
+		listSuffix = "။";
+		break;
+	    case 'parens':
+	    default:
+		listPreffix = "(";
+		listSuffix = ")";
+		break;
+	}
+	
+	
 	if(listTypeOL !== reqListTypeOL) {
-	    var listRuleOL = "ol{list-style-type:none}  ol li{display:block} ol li:before{content: '(' attr(item-value) ') '}";
+	    var listRuleOL = "ol{list-style-type:none}  ol li{display:block} ol li:before{content: '" + listPreffix + "' attr(item-value) '" + listSuffix + " '}";
 	    jQuery('head').append('<style>' + listRuleOL + '</style>');
 	    var mymrMap = "";
 	    var mymrDigitSystem = "";
@@ -382,6 +402,7 @@ function mymrLists(reqListTypeUL,reqListTypeOL) {
 		case 'rumai-palaung-consonant':
 		    var mymrMap = ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ႎ","ဝ","ဟ","အ"];
 		    break;
+		case 'myanmar-section':
 		case 'myanmar-parens':
 		case 'myanmar':
 		    mymrDigitSystem = "myanmar";
@@ -419,7 +440,7 @@ jQuery(document).ready(function () {
 	    }
 	}
 
-	if (olListType != "" || ulListType != "" ) { mymrLists(ulListType,olListType); }
+	if (olListType != "" || ulListType != "" ) { mymrLists(ulListType,olListType,listAffix); }
 
 	
 	

@@ -23,7 +23,13 @@
     system: extends myanmar;
     prefix: "(";
     suffix: ") ";
-} 
+}
+
+@counter-style myanmar-section {
+    system: extends myanmar;
+    prefix: "";
+    suffix: "။ ";
+}
 
 @counter-style shan {
 	system: numeric;
