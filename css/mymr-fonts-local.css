@@ -13,30 +13,30 @@ TODO:
 
 @font-face {
     font-family: 'Padauk';
-    src: url('/i18n/fonts/Padauk.eot'); 
-    src: url('/i18n/fonts/Padauk.eot?#iefix') format('embedded-opentype'),
-                     url('/i18n/fonts/Padauk.woff') format('woff'), 
-                     url('/i18n/fonts/Padauk.ttf')  format('truetype');
+    src: url('/fonts/Padauk.eot'); 
+    src: url('/fonts/Padauk.eot?#iefix') format('embedded-opentype'),
+                     url('/fonts/Padauk.woff') format('woff'), 
+                     url('/fonts/Padauk.ttf')  format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Padauk';
-    src: url('/i18n/fonts/Padauk-bold.eot'); 
-    src: url('/i18n/fonts/Padauk-bold.eot?#iefix') format('embedded-opentype'),
-                     url('/i18n/fonts/Padauk-bold.woff') format('woff'), 
-                     url('/i18n/fonts/Padauk-bold.ttf')  format('truetype');
+    src: url('/fonts/Padauk-bold.eot'); 
+    src: url('/fonts/Padauk-bold.eot?#iefix') format('embedded-opentype'),
+                     url('/fonts/Padauk-bold.woff') format('woff'), 
+                     url('/fonts/Padauk-bold.ttf')  format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Tharlon';
-    src: url('/i18n/fonts/Tharlon-Regular.eot'); 
-    src: url('/i18n/fonts/Tharlon-Regular.eot?#iefix') format('embedded-opentype'),
-                     url('/i18n/fonts/Tharlon-Regular.woff') format('woff'), 
-                     url('/i18n/fonts/Tharlon-Regular.ttf')  format('truetype');
+    src: url('/fonts/Tharlon-Regular.eot'); 
+    src: url('/fonts/Tharlon-Regular.eot?#iefix') format('embedded-opentype'),
+                     url('/fonts/Tharlon-Regular.woff') format('woff'), 
+                     url('/fonts/Tharlon-Regular.ttf')  format('truetype');
     font-weight: normal;
     font-style: normal;
 }

@@ -1,0 +1,81 @@
+@import url('http://mmwebfonts.comquas.com/fonts/?font=padauk');
+@import url('http://mmwebfonts.comquas.com/fonts/?font=mon3');
+
+/* 
+ * my : Burmese
+ * obr : Old Burmese
+ * rki : Rakhine
+ * tvn : Tavoyan
+ * int : Intha
+ * shn : Shan
+ */
+:lang(my), 
+:lang(obr),
+:lang(rki),
+:lang(tvn),
+:lang(int),
+:lang(shn) {
+    font-family: Tharlon;
+}
+
+/* 
+ * ksw : S'gaw Karen
+ * pwo : Western Pwo Karen
+ * blk : Pa'o Karen
+ */
+:lang(ksw),
+:lang(pwo),
+:lang(blk) {
+    font-family: Padauk;
+    -moz-font-language-override: ksw;
+    font-language-override: ksw;
+}
+
+/*
+ * kyu : Kayah
+ */
+:lang(kyu) {
+    font-family: Padauk;
+}
+
+/* 
+ * mnw : Mon
+ * kjp : Eastern Pwo Karen
+ */
+:lang(mnw),
+:lang(kjp) {
+    font-family: "MON3 Anonata 1";
+}
+
+/*
+ * csh : Asho Chin
+ */
+:lang(csh) {}
+
+/*
+ * kht : Khamti Shan
+ */
+:lang(kht) {
+    font-family: Padauk;
+}
+
+/*
+ * aio : Aiton
+ */
+:lang(aio) {
+    font-family: Padauk;
+}
+
+/*
+ * phk : Phake
+ */
+:lang(phk) {
+    font-family: Padauk;
+}
+
+/*
+ * Add Sanskrit and Pali support
+ */
+:lang(pli-Mymr), :lang(san-Mymr) {}
+
+
