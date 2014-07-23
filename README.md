@@ -26,7 +26,7 @@ There are two ways of defining the langauge rules to be used:
 <head>
     <meta charset="UTF-8"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
-    <script src="/path/to/jquery.mymr.min.js" ></script>
+    <script src="/path/to/jquery.mymr.latest.min.js" ></script>
 ```
 2. Enable and configure line breaking
 ```html
@@ -34,7 +34,7 @@ There are two ways of defining the langauge rules to be used:
 <head>
     <meta charset="UTF-8"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
-    <script src="/path/to/jquery.mymr.min.js" ></script>
+    <script src="/path/to/jquery.mymr.latest.min.js" ></script>
     <script>
         /* set language for line breaking  */
         var mymrLang="my";
@@ -48,7 +48,7 @@ There are two ways of defining the langauge rules to be used:
 <head>
     <meta charset="UTF-8"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
-    <script src="/path/to/jquery.mymr.min.js" ></script>
+    <script src="/path/to/jquery.mymr.latest.min.js" ></script>
     <script>
         /* Enable list support for unordered lists  */
         var ulListType = "dash";
