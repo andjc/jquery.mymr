@@ -189,18 +189,18 @@
    * Generate selected ordered list
    * @param {jQueryObject} selected ordered list
    */
-  function generate(that, type, callback){
   
-    console.log(type);
+  function generate(that, type, callback){
  
     var start = that.attr('start') ? parseInt(that.attr('start')) : 0;
     var reversed = that.attr('reversed');
     var li = that.find('>li');
     var rmap, dig;
-
+    console.log(type);
     if(li.length > 0) {
 
       type = type || that.attr('type')|| that.attr('lang');
+      
       dig = type.match('dig-');
       type = iso[type.replace('dig-', '')] || type.replace('dig-', '');
       
@@ -270,7 +270,7 @@
   }
 
   function hasContent($that){
-    return $that.attr('lang') && $that.attr('type') || $that.attr('data-myol') && $that.attr('type');
+    return $that.attr('lang') && $that.attr('type') || $that.attr('data-myol');
   }
 
   jQuery('head').append("<style>"+
@@ -281,12 +281,12 @@
     "</style>");
 
   // Find and nested Myanmar ordered List
-  $('ol').each(function(){
-    var $this = $(this);
-    var listPreffix = "";
-    var listSuffix = "";
   
+  $('ol').each(function(){
+
+    var $this = $(this);
     if( hasContent($this) ){
+      
       generate($this, false, function(that, listItems){
         listItems.css('list-style-type', 'none');
         that.removeClass('sm parens')
