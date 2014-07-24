@@ -267,7 +267,7 @@
    */
   function rootGenerate(ol, lang, fn){
 
-    var $firstLvl, $secondLvl, $thirdLvl, $fourth;
+    var $firstLvl, $next, $secondLvl, $thirdLvl;
     var $root = $(ol);
 
     $root.each(function(){
@@ -275,7 +275,10 @@
       $firstLvl = $(this);
       generate($firstLvl, lang);
 
-      $firstLvl.find('ol').not('li ol li ol').each(function(){
+      if($firstLvl.find('ol li ol').length > 0) $next = $firstLvl.find('ol').not('li ol li ol');
+      else $next = $firstLvl.find('ol');
+
+      $next.each(function(){
     
         $secondLvl = $(this);
         generate($secondLvl, lang);
@@ -324,13 +327,15 @@
       if( (type = hasContent($this)) ){
 
         if( $this.attr('data-mymrol') && $this.attr('data-mymrol').match('isRoot') ){
+
           rootGenerate($this, type, function(that){
             that.removeClass('sm parens')
-            .addClass('mymr '+set.affix + ' isRoot')
+            .addClass('mymr '+set.affix)
             .find('ol').attr('data-mymrol' ,'isChild')
             .removeClass('sm parnes')
-            .addClass('mymr '+set.affix + ' isRoot');
+            .addClass('mymr '+set.affix);
           });
+
         }else {
           generate($this, type, function(that, listItems){
             that.removeClass('sm parens')
