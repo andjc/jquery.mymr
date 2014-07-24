@@ -183,6 +183,7 @@
       return regmap[dig];  
     }
     return dig;
+
   }
 
   /**
@@ -192,14 +193,14 @@
   
   function generate(that, type, callback){
  
-    var start = that.attr('start') ? parseInt(that.attr('start')) : 0;
+    var start = that.attr('start') ? parseInt(that.attr('start')) : 1;
     var reversed = that.attr('reversed');
     var li = that.find('>li');
     var rmap, dig;
-    console.log(type);
+    
     if(li.length > 0) {
 
-      type = type || that.attr('type')|| that.attr('lang');
+      type = type || that.attr('type');
       
       dig = type.match('dig-');
       type = iso[type.replace('dig-', '')] || type.replace('dig-', '');
@@ -229,10 +230,10 @@
         });
 
       }
-    }
 
-    // Calling callback
-    if( callback ) callback(that, li);
+      // Calling callback
+      if( callback ) callback(that, li);
+    }
   }
 
   /** 
@@ -255,8 +256,8 @@
         generate($secondLvl, lang);
         
         $secondLvl.find('ol').each(function(){
-          console.log(this.id);
-          $thirdLvl = $(this);             
+          
+          $thirdLvl = $(this);
           generate($thirdLvl, lang);
 
         });
@@ -269,8 +270,17 @@
 
   }
 
+  // Detection is depending on type
   function hasContent($that){
-    return $that.attr('lang') && $that.attr('type') || $that.attr('data-myol');
+    var mymrol;
+    if((mymrol = $that.attr('data-mymrol') ) ){
+      if( mymrol.match('isChild') ){
+        return false;
+      }
+      mymrol = mymrol.split(',');
+      return mymrol[0];
+    }
+    return $that.attr('type');
   }
 
   jQuery('head').append("<style>"+
@@ -281,26 +291,37 @@
     "</style>");
 
   // Find and nested Myanmar ordered List
-  
-  $('ol').each(function(){
+  // This will declare when document is ready 
+  $(function(){
 
-    var $this = $(this);
-    if( hasContent($this) ){
+    $('ol').each(function(){
+      var $this = $(this);
+      if( (type = hasContent($this)) ){
+
+        if( $this.attr('data-mymrol') && $this.attr('data-mymrol').match('isRoot') ){
+          rootGenerate($this, type, function(that){
+            that.removeClass('sm parens')
+            .addClass('mymr '+set.affix + ' isRoot')
+            .find('ol').attr('data-mymrol' ,'isChild')
+            .removeClass('sm parnes')
+            .addClass('mymr '+set.affix + ' isRoot');
+          });
+        }else {
+          generate($this, type, function(that, listItems){
+            that.removeClass('sm parens')
+            .addClass('mymr '+set.affix);
+          });
+        }
+      }
       
-      generate($this, false, function(that, listItems){
-        listItems.css('list-style-type', 'none');
-        that.removeClass('sm parens')
-        .addClass('mymr '+set.affix);
-      });
-    }
-    
+    });  
   });
 
   /**
    * Extending to jQuery
    */
   jQuery.fn.extend({
-    mymrSyllBreak: function(language){
+    mymrLineBreak: function(language){
 
       var lang = language || this.attr('lang');
 
