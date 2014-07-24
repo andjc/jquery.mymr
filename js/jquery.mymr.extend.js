@@ -136,8 +136,30 @@
   // Digits and Consonants Map
   var map = {
     digits: {
-      myanmar: ['\u1040','\u1041','\u1042','\u1043','\u1044','\u1045','\u1046','\u1047','\u1048','\u1049'],
-      shan: ['\u1090','\u1091','\u1092','\u1093','\u1094','\u1045','\u1096','\u1097','\u1098','\u1099']
+      myanmar: {
+      '0': '\u1040',
+      '1': '\u1041',
+      '2': '\u1042',
+      '3': '\u1043',
+      '4': '\u1044',
+      '5': '\u1045',
+      '6': '\u1046',
+      '7': '\u1047',
+      '8': '\u1048',
+      '9': '\u1049'
+      },
+      shan: {
+      '0': '\u1090',
+      '1': '\u1091',
+      '2': '\u1092',
+      '3': '\u1093',
+      '4': '\u1094',
+      '5': '\u1045',
+      '6': '\u1096',
+      '7': '\u1097',
+      '8': '\u1098',
+      '9': '\u1099'
+      }
     },
     consonants: {
       // 
@@ -177,10 +199,13 @@
    */
   function convertDigits(system,dig) {
 
-    var regmap;
+    var regmap, k;
     var digstr = dig.toString();
     if((regmap = map.digits[system])) {
-      return regmap[dig];  
+      for(k in regmap){
+        digstr = digstr.replace(new RegExp(k, 'g'), regmap[k]);
+      }
+      return digstr;
     }
     return dig;
 
