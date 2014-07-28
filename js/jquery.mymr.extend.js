@@ -371,7 +371,7 @@
    */
   jQuery.fn.extend({
 
-    mymrLineBreak: function(language){
+    mymrSyllBreak: function(language){
 
       var lang = language || this.attr('lang');
 
