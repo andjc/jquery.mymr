@@ -8,7 +8,7 @@
    * @param {String} language type
    * @return {String} edited content
    */
-  function lineBreak(lang, content){
+    function lineBreak(lang, content){
 
     switch(lang){
       case "my":
@@ -135,7 +135,9 @@
     "rbb": "rumaiPalaung"
   };
   var set = {
-    affix: 'parens'
+    affix: 'parens',
+    listPreffix: '',
+    listSuffix: ''
   };
 
   // Digits and Consonants Map
@@ -219,43 +221,59 @@
   /**
    * Generate selected ordered list
    * @param {jQueryObject} selected ordered list
+   * @param {Object} option about everything
+   * @param {Function} Callback Function
    */
   
-  function generate(that, type, callback){
- 
-    var start = that.attr('start') ? parseInt(that.attr('start')) : 1;
-    var reversed = that.attr('reversed');
+  function generate(that, opt, callback){
+    console.log(opt);
+    // About to set start as consonants
+    // var start = that.attr('start') && !isNaN(parseInt(that.attr('start'))) == 'number' ? parseInt(that.attr('start')) : that.attr('start');
+    var start = !isNaN(opt.start) ? opt.start : that.attr('start') && !isNaN(parseInt(that.attr('start'))) ? parseInt(that.attr('start')) : 0;
+    var reversed = opt.reversed || that.attr('reversed');
     var li = that.find('>li');
-    var rmap, dig;
+    var rmap, dig, afx = opt.affix || 'x';
+    
+    if( !opt.affix && set.affix == "self" && set.listPreffix && set.listSuffix ){
+      afx = set.listPreffix + "x" + set.listSuffix;
+    }
     
     if(li.length > 0) {
 
-      type = type || that.attr('type');
-      
+      type = opt.type || that.attr('type');
       dig = type.match('dig-');
       type = iso[type.replace('dig-', '')] || type.replace('dig-', '');
       
       if (dig && (rmap = map.digits[type])) {
 
+        // if(typeof start !== 'number'){start = 1;} // For consonants start
+
         if(reversed) {
-          $(li.get().reversed()).each(function(i){
-            $(this).attr('item-value', convertDigits(type,i+start));
+          $(li.get().reverse()).each(function(i){
+            $(this).attr('item-value', afx.replace("x",convertDigits(type,i+start+1)));
           });
         }else{
           li.each(function(i){
-            $(this).attr('item-value', convertDigits(type,i+start));
+            $(this).attr('item-value', afx.replace("x",convertDigits(type,i+start+1)));
           });
         }
 
       } else if(!dig && (rmap = map.consonants[type])){
 
+        // For consonants start
+        // if(start && rmap.indexOf(start) > -1 ){
+        //   start = rmap.indexOf(start)
+        // }else{
+        //   start = 0;
+        // }
+
         li.each(function(i){
-          if(i <= rmap.length-1){
-            $(this).attr('item-value', rmap[i]);
+          if(i+start <= rmap.length-1){
+            $(this).attr('item-value', afx.replace("x", rmap[i+start]));
           } else {
-            var quot = Math.floor(i/rmap.length) - 1;
-            var rem = i%rmap.length;
-            $(this).attr('item-value', rmap[quot] + rmap[rem]);
+            var quot = Math.floor((i+start)/rmap.length) - 1;
+            var rem = (i+start)%rmap.length;
+            $(this).attr('item-value', afx.replace("x", rmap[quot] + rmap[rem]));
           }
         });
 
@@ -270,7 +288,7 @@
    * Level finder than push to generate
    * @param {Selector||jQueryObject}
    */
-  function rootGenerate(ol, lang, fn){
+  function rootGenerate(ol, opt, fn){
 
     var $firstLvl, $next, $secondLvl, $thirdLvl;
     var $root = $(ol);
@@ -278,7 +296,7 @@
     $root.each(function(){
 
       $firstLvl = $(this);
-      generate($firstLvl, lang);
+      generate($firstLvl, opt);
 
       if($firstLvl.find('ol li ol').length > 0) $next = $firstLvl.find('ol').not('li ol li ol');
       else $next = $firstLvl.find('ol');
@@ -286,12 +304,12 @@
       $next.each(function(){
     
         $secondLvl = $(this);
-        generate($secondLvl, lang);
+        generate($secondLvl, opt);
         
         $secondLvl.find('ol').each(function(){
           
           $thirdLvl = $(this);
-          generate($thirdLvl, lang);
+          generate($thirdLvl, opt);
 
         });
 
@@ -316,24 +334,24 @@
     return $that.attr('type');
   }
 
-  jQuery('head').append("<style>"+
+  jQuery('head').append("<style id='mymrStyle'>"+
     "ol.mymr {list-style-type:none}"+
     "ol.mymr>li{display:block}"+
     "ol.mymr.parens>li:before{content: '(' attr(item-value) ') '}"+
     "ol.mymr.sm>li:before{content: '' attr(item-value) '။ '}"+
+    "ol.mymr.self>li:before{content: attr(item-value) ' '}"+
     "</style>");
 
   // Find and nested Myanmar ordered List
-  // This will declare when document is ready 
-  $(function(){
-
+  // This should be declare before some extend function declare
+  function readyWork(){
     $('ol').each(function(){
       var $this = $(this);
       if( (type = hasContent($this)) ){
 
         if( $this.attr('data-mymrol') && $this.attr('data-mymrol').match('isRoot') ){
 
-          rootGenerate($this, type, function(that){
+          rootGenerate($this, {type: type}, function(that){
             that.removeClass('sm parens')
             .addClass('mymr '+set.affix)
             .find('ol').attr('data-mymrol' ,'isChild')
@@ -342,21 +360,23 @@
           });
 
         }else {
-          generate($this, type, function(that, listItems){
+          generate($this, {type: type}, function(that, listItems){
             that.removeClass('sm parens')
             .addClass('mymr '+set.affix);
           });
         }
       }
-      
-    });  
-  });
+    }); 
+  }
+
+  readyWork();
 
   /**
    * Extending to jQuery
    */
   jQuery.fn.extend({
-    mymrLineBreak: function(language){
+
+    mymrSyllBreak: function(language){
 
       var lang = language || this.attr('lang');
 
@@ -368,20 +388,29 @@
       return this;
 
     },
-    mymrOrderlist: function(lang, affix, root){
+    mymrOrderlist: function(lang, opt){
 
       var $this = this;
-      affix = affix || set.affix;
+      var affix = opt.affix || set.affix, match;
+      opt.type = lang;
+      if( !affix.match(/parnes|sm/) && affix.match('x') ){
+        match = affix;
+        affix = "self";
+      }else{
+        affix = set.affix;
+        opt.affix = false;
+      }
+      
     
       if( hasContent($this) ){
-        if(!root){
-          generate($this, lang, function(that, listItems){
+        if(!opt.isRoot){
+          generate($this, opt, function(that, listItems){
             listItems.css('list-style-type', 'none');
             that.removeClass('sm parens')
             .addClass(affix+ ' mymr');
           });          
         }else{
-          rootGenerate($this, lang, function(that){
+          rootGenerate($this, opt, function(that){
             that.removeClass('sm parens')
             .addClass(affix+ ' mymr').find('ol').removeClass('sm parnes')
             .addClass(affix+ ' mymr');
@@ -390,13 +419,38 @@
       }
       return this;
       
-    },
-    mymrSetting: function(setting){
-      for(var key in setting){
-        if(set[key]) set[key] = setting[key];
-      }
-      return this;
     }
   });
+
+  jQuery.extend({
+    mymr: function(){
+      readyWork();
+    },
+    mymrSetting: function(setting){
+
+      if(setting.affix){
+        if(setting.affix.match(/parnes|sm/)){
+          set.affix = setting.affix
+        }else if(setting.affix.match(/x/)){
+          var afx = setting.affix.split('x');
+          set.affix = 'self';
+          set.listPreffix = afx[0];
+          set.listSuffix = afx[1];
+        }
+      }
+      
+      // Declare readyWork again of fixed
+      readyWork();
+      return this;
+    },
+    mymrReset: function(){
+      set = {
+        affix: 'parnes',
+        listPreffix: '',
+        listSuffix: ''
+      }
+      readyWork();
+    }
+  })
 
 }(jQuery));
