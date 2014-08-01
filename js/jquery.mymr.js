@@ -194,8 +194,10 @@
 
       palePalaung: ["က","ခ","ဂ","င","စ","စှ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ဝ","ဟ","အ","ဝှ"],
       rumaiPalaung: ["က","ခ","ဂ","င","စ","ဆ","ဇ","ည","တ","ထ","ဒ","န","ပ","ဖ","ဘ","မ","ယ","ရ","လ","ႎ","ဝ","ဟ","အ"]
-    }
-
+    },
+    firstLetter: {
+      sgawKaren: /(^[\u1000-\u1006\u100a\u1010-\u1012\u1014-\u1016\u1018-\u101f\u1021\u1027\u1061][\u103B-\u103E\u1060]?[\u102B\u102D-\u1030\u1032\u1036\u1037\u1062]?([\u102C\u1062\u1063]\u103A|\u103B|\u1064)?([\u1012\u1019]\u103A)?)/
+    },
   };
 
   /**
@@ -333,6 +335,22 @@
     }
     return $that.attr('type');
   }
+  
+  // First Letter
+  function firstLetter($that, lang, callback){
+    lang = iso[lang] || lang;
+    if (lib.firstLetter[lang]) {
+      var i = 0,each = [];
+      for (; i < $that.length; i++) {
+        var fl = $that[i].innerHTMl.match(lib.firstLetter[lang]);
+        if(fl){
+          $that[i].setAttribute('data-mymrfl', fl[0]);
+          each.push({$elem: $($that[i]), fl: fl[0]});
+        }
+      };
+      if(callback) callback(each);
+    }
+  }
 
   jQuery('head').append("<style id='mymrStyle'>"+
     "ol.mymr {list-style-type:none}"+
@@ -419,6 +437,17 @@
       }
       return this;
       
+    },
+
+    mymrFirstLetter: function(lang){
+      firstLetter(this, lang, function(each){
+        var i = 0;
+        for (; i < each.length; i++) {
+          each[i].$elem.html(function(x,h){
+            return h.replace(each[i].fl, "<span class='first-letter'>"+each[i].fl+"</span>");
+          });
+        };
+      });
     }
   });
 
