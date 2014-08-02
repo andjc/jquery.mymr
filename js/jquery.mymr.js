@@ -3,11 +3,11 @@
   if(typeof jQuery === 'undefined') { throw new Error('Mymr need requires jQuery'); }
   
   /**
-   * Line Break Function
-   * @param {String} content text
-   * @param {String} language type
-   * @return {String} edited content
-   */
+* Line Break Function
+* @param {String} content text
+* @param {String} language type
+* @return {String} edited content
+*/
     function lineBreak(lang, content){
 
     switch(lang){
@@ -169,7 +169,7 @@
       }
     },
     consonants: {
-      // 
+      //
       rakhine: ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"],
       tavoyan: ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"],
       intha: ["က","ခ","ဂ","ဃ","င","စ","ဆ","ဇ","ဈ","ည","ဋ","ဌ","ဍ","ဎ","တ","ထ","ဒ","ဓ","န","ပ","ဖ","ဗ","ဘ","မ","ယ","ရ","လ","ဝ","သ","ဟ","ဠ","အ"],
@@ -201,11 +201,11 @@
   };
 
   /**
-   * Convert Digits
-   * @param {String} type of digits language in map
-   * @param {String} content text
-   * @return {String} edited text
-   */
+* Convert Digits
+* @param {String} type of digits language in map
+* @param {String} content text
+* @return {String} edited text
+*/
   function convertDigits(system,dig) {
 
     var regmap, k;
@@ -221,11 +221,11 @@
   }
 
   /**
-   * Generate selected ordered list
-   * @param {jQueryObject} selected ordered list
-   * @param {Object} option about everything
-   * @param {Function} Callback Function
-   */
+* Generate selected ordered list
+* @param {jQueryObject} selected ordered list
+* @param {Object} option about everything
+* @param {Function} Callback Function
+*/
   
   function generate(that, opt, callback){
     console.log(opt);
@@ -264,9 +264,9 @@
 
         // For consonants start
         // if(start && rmap.indexOf(start) > -1 ){
-        //   start = rmap.indexOf(start)
+        // start = rmap.indexOf(start)
         // }else{
-        //   start = 0;
+        // start = 0;
         // }
 
         li.each(function(i){
@@ -286,10 +286,10 @@
     }
   }
 
-  /** 
-   * Level finder than push to generate
-   * @param {Selector||jQueryObject}
-   */
+  /**
+* Level finder than push to generate
+* @param {Selector||jQueryObject}
+*/
   function rootGenerate(ol, opt, fn){
 
     var $firstLvl, $next, $secondLvl, $thirdLvl;
@@ -338,16 +338,19 @@
   
   // First Letter
   function firstLetter($that, lang, callback){
+    
     lang = iso[lang] || lang;
-    if (lib.firstLetter[lang]) {
+    if (map.firstLetter[lang]) {
+      
       var i = 0,each = [];
       for (; i < $that.length; i++) {
-        var fl = $that[i].innerHTMl.match(lib.firstLetter[lang]);
+        var fl = $that[i].innerHTML.match(map.firstLetter[lang]);
+        console.log(fl);
         if(fl){
           $that[i].setAttribute('data-mymrfl', fl[0]);
           each.push({$elem: $($that[i]), fl: fl[0]});
         }
-      };
+      }
       if(callback) callback(each);
     }
   }
@@ -384,14 +387,14 @@
           });
         }
       }
-    }); 
+    });
   }
 
   readyWork();
 
   /**
-   * Extending to jQuery
-   */
+* Extending to jQuery
+*/
   jQuery.fn.extend({
 
     mymrSyllBreak: function(language){
@@ -426,7 +429,7 @@
             listItems.css('list-style-type', 'none');
             that.removeClass('sm parens')
             .addClass(affix+ ' mymr');
-          });          
+          });
         }else{
           rootGenerate($this, opt, function(that){
             that.removeClass('sm parens')
@@ -442,11 +445,12 @@
     mymrFirstLetter: function(lang){
       firstLetter(this, lang, function(each){
         var i = 0;
+        console.log(each.length);
         for (; i < each.length; i++) {
-          each[i].$elem.html(function(x,h){
-            return h.replace(each[i].fl, "<span class='first-letter'>"+each[i].fl+"</span>");
-          });
-        };
+          each[i].$elem.html(
+            each[i].$elem.html().replace(each[i].fl, "<span class='first-letter'>"+each[i].fl+"</span>")
+          );
+        }
       });
     }
   });
@@ -459,7 +463,7 @@
 
       if(setting.affix){
         if(setting.affix.match(/parnes|sm/)){
-          set.affix = setting.affix
+          set.affix = setting.affix;
         }else if(setting.affix.match(/x/)){
           var afx = setting.affix.split('x');
           set.affix = 'self';
@@ -477,9 +481,11 @@
         affix: 'parnes',
         listPreffix: '',
         listSuffix: ''
-      }
+      };
       readyWork();
     }
-  })
+  });
 
 }(jQuery));
+
+$('p').mymrFirstLetter('ksw');
