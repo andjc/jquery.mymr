@@ -488,5 +488,3 @@
   });
 
 }(jQuery));
-
-$('p').mymrFirstLetter('ksw');
